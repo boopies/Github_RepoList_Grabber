@@ -10,14 +10,14 @@ function getUserRepo(selectedUser, selectedOrder){
 
 function displayResults(responseJson) {
     console.log(responseJson);
+    $('#searched-user').append(`${userSearch}`);
     //replace the existing image with the new one
     if (responseJson.message === 'Not Found'){
-        $('#results-list').append(`<li><h3>${userSearch} does not exist</h3></li>`)
+        $('#results-list').append(`<li><h3 id="no-user">User ${userSearch} does not exist</h3></li>`)
     } else {
-        $('#searched-user').append(`${userSearch}`);
         for (let i = 0; i < responseJson.length; i++){
             $('#results-list').append(
-              `<li><h3>${responseJson[i].name}</h3>
+              `<li><h3>${i + 1}. ${responseJson[i].name}</h3>
               <p><a href="${responseJson[i].html_url}">${responseJson[i].html_url}</a></p>
               <p>Description: ${responseJson[i].description}</a></p>
               </li>`

@@ -40,3 +40,7 @@
   .hidden {
     display: none;
   }
+
+  #no-user{
+    color: red;
+  }
