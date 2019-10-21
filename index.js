@@ -1,8 +1,8 @@
 //random all breeds
 let userSearch;
 
-function getUserRepo(selectedUser, selectedOrder){
-    fetch (`https://api.github.com/users/${selectedUser}/repos${selectedOrder}`)
+function getUserRepo(selectedUser, selectedOrder, resultsNumber){
+    fetch (`https://api.github.com/users/${selectedUser}/repos${selectedOrder}${resultsNumber}`)
     .then(response => response.json())
     .then(responseJson => displayResults(responseJson))
     .catch(error => alert('We are having some issues.'));
@@ -35,9 +35,11 @@ function watchForm() {
         $('#searched-user').empty();
         let selectedUser = document.getElementById("js-search-term").value;
         let ascdescOrder = document.getElementById('asc-desc').value;
+        let maxResults = document.getElementById('js-max-results').value;
         let selectedOrder = `?direction=${ascdescOrder}`
+        let resultsNumber = `&per_page=${maxResults}`
         userSearch = selectedUser
-        getUserRepo(selectedUser, selectedOrder);
+        getUserRepo(selectedUser, selectedOrder, resultsNumber);
     })
 }
 
